@@ -1,13 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
+
 import sweeper.Box;
 
 public class Main extends JFrame {
 
-    private final int COLS = 15;
-    private final int ROWS = 1;
+    private final int COLS = 9;
+    private final int ROWS = 9;
     private final int IMAGE_SIZE = 60;
     private JPanel panel;
+    private Image[] boxNumbers = new Image[9];
+    private static Random rand = new Random(1890);
 
     public static void main(String[] args) {
         new Main();
@@ -24,8 +28,19 @@ public class Main extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                for (Box box : Box.values())
-                g.drawImage((Image) box.image,box.ordinal() * IMAGE_SIZE, 0, this);
+
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                            g.drawImage( boxNumbers[rand.nextInt(9)],j * IMAGE_SIZE, i * IMAGE_SIZE, this);
+                    }
+                }
+
+//                for (Box box : Box.values())
+//                g.drawImage((Image) box.image,box.ordinal() * IMAGE_SIZE, 0, this);
+
+
+
+
 //                g.drawImage(getImage("Num1"), IMAGE_SIZE, IMAGE_SIZE, this);
 //                g.drawImage(getImage("Num1"), 0, IMAGE_SIZE, this);
             }
@@ -46,6 +61,17 @@ public class Main extends JFrame {
     private void setImages() {
         for (Box box : Box.values())
             box.image = getImage(box.name().toLowerCase());
+
+            boxNumbers[0] = getImage("NoBomb".toLowerCase());
+            boxNumbers[1] = getImage("Num1".toLowerCase());
+            boxNumbers[2] = getImage("Num2".toLowerCase());
+            boxNumbers[3] = getImage("Num3".toLowerCase());
+            boxNumbers[4] = getImage("Num4".toLowerCase());
+            boxNumbers[5] = getImage("Num5".toLowerCase());
+            boxNumbers[6] = getImage("Num6".toLowerCase());
+            boxNumbers[7] = getImage("Num7".toLowerCase());
+            boxNumbers[8] = getImage("Num8".toLowerCase());
+
     }
 
     private Image getImage(String name) {
