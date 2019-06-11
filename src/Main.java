@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import sweeper.Box;
@@ -12,15 +14,52 @@ public class Main extends JFrame {
     private JPanel panel;
     private Image[] boxNumbers = new Image[9];
     private static Random rand = new Random(1890);
+    private int[][] field = new int[COLS][ROWS];
 
     public static void main(String[] args) {
         new Main();
     }
 
     private Main() {
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                field[i][j] = -1;
+            }
+        }
+
         setImages();
         initPanel();
         initFrame();
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (e != null) {
+                    int mI, mJ;
+//                    initPanel();
+//                    repaint();
+                    mI = e.getX() / COLS;
+                    mJ = e.getY() / ROWS;
+
+                }
+            }
+        });
+    }
+
+    private void fieldInitiation() {
+        int value;
+        Random rand = new Random();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                value = rand.nextInt(5);
+                field[i][j] = value;
+                while (value != 0) {
+
+                }
+
+            }
+        }
     }
 
     private void initPanel() {
