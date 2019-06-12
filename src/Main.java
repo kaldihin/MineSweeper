@@ -11,10 +11,11 @@ public class Main extends JFrame {
     private final int COLS = 9;
     private final int ROWS = 9;
     private final int IMAGE_SIZE = 60;
-    private JPanel panel;
+    private static JPanel panel;
     private Image[] boxNumbers = new Image[9];
     private static Random rand = new Random(1890);
     private int[][] field = new int[COLS][ROWS];
+    private static int mI = 0, mJ = 0;
 
     public static void main(String[] args) {
         new Main();
@@ -24,7 +25,7 @@ public class Main extends JFrame {
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                field[i][j] = -1;
+                field[i][j] = 1;
             }
         }
 
@@ -35,14 +36,11 @@ public class Main extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (e != null) {
-                    int mI, mJ;
-//                    initPanel();
-//                    repaint();
-                    mI = e.getX() / COLS;
-                    mJ = e.getY() / ROWS;
-
-                }
+                    mI = e.getX() / IMAGE_SIZE ;//% COLS
+                    mJ = e.getY() / IMAGE_SIZE; //% ROWS
+                    System.out.println(e.getX() + " " + e.getY());
+                    System.out.println(mI + " " + mJ);
+                    repaint();
             }
         });
     }
@@ -68,11 +66,18 @@ public class Main extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
-                for (int i = 0; i < 9; i++) {
-                    for (int j = 0; j < 9; j++) {
-                            g.drawImage( boxNumbers[rand.nextInt(9)],j * IMAGE_SIZE, i * IMAGE_SIZE, this);
-                    }
+//                if (mI == 0 && mJ == 0) {
+//                    for (int i = 0; i < 9; i++) {
+//                        for (int j = 0; j < 9; j++) {
+//                            g.drawImage(boxNumbers[0],mI * IMAGE_SIZE, mJ * IMAGE_SIZE, this);
+//                        }
+//                    }
+//                }
+
+                if (field[mI][mJ] == 1) {
+                    g.drawImage( boxNumbers[1],mI * IMAGE_SIZE, mJ * IMAGE_SIZE, null);
                 }
+
 
 //                for (Box box : Box.values())
 //                g.drawImage((Image) box.image,box.ordinal() * IMAGE_SIZE, 0, this);
