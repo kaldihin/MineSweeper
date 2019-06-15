@@ -2,60 +2,90 @@ import sweeper.Box;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 public class NewMS extends JFrame {
 
-    private static final int COLS = 9, ROWS = 9, IMAGE_SIZE = 50;
+    private static final int COLS = 9, ROWS = 9, IMAGE_SIZE = 80;
     private GridLayout grid = new GridLayout(COLS, ROWS);
-    private static Image[] imagesArray = new Image[16];
-    private int pointX = 0, pointY = 0;
+    private static ImageIcon[] imagesArray = new ImageIcon[16];
+    private int roundX = 0, roundY = 0;
+    private static JPanel panel = new JPanel();
 
     public static void main(String[] args) {
         new NewMS();
     }
 
     private NewMS() {
-        initializer();
-        setLayout(grid);
-        setSize(700, 1000);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
         setImages();
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (e != null) {
-                    pointX = e.getX() / IMAGE_SIZE;
-                    pointY = e.getY() / IMAGE_SIZE;
-                }
-            }
-        });
+//        setLayout(grid);
+        initializer();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mine Sweeper");
+        setVisible(true);
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
+//        addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                super.mouseClicked(e);
+//                if (e != null) {
+//                    roundX = e.getX() % IMAGE_SIZE;
+//                    roundY = e.getY() % IMAGE_SIZE;
+//                    System.out.println(e.getX() + " " + e.getY());
+//                    painter(e.getX() - roundX, e.getY() - roundY);
+//                }
+//            }
+//        });
 
-//        painter();
     }
 
     private void initializer() {
 
-        JPanel panel = new JPanel(){
-            @Override
-            public void paint(Graphics g) {
-                super.paint(g);
-                for (int i = 0; i < ROWS; i++) {
+        Random rand = new Random(4574);
+
+        panel = new JPanel();
+//        {
+//            @Override
+//            protected void paintComponent(Graphics g) {
+//                super.paintComponent(g);
+//                for (int i = 0; i < ROWS; i++) {
+//                    for (int j = 0; j < COLS; j++) {
+//                        g.drawImage(imagesArray[1], i * IMAGE_SIZE, j * IMAGE_SIZE, null);
+//                    }
+//                }
+//            }
+//        };
+
+        JButton[][] buttons = new JButton[COLS][ROWS];
+
+        for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
-                        g.drawImage(imagesArray[10], i * IMAGE_SIZE, j * IMAGE_SIZE, this);
+                        buttons[i][j] = new JButton();
+                        buttons[i][j].setMargin(new Insets(0,0,0,0));
+                        buttons[i][j].setIcon(imagesArray[7]);
+                        buttons[i][j].addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                            }
+                        });
+                        panel.add(buttons[i][j]);
                     }
                 }
-            }
-        };
-        panel.setSize(COLS * IMAGE_SIZE, ROWS * IMAGE_SIZE);
+        panel.setPreferredSize(new Dimension(COLS * IMAGE_SIZE, ROWS * IMAGE_SIZE));
         add(panel);
     }
 
-    private void painter() {
+    private void painter(int x, int y) {
+
+        panel.getGraphics().drawImage(imagesArray[8].getImage(), x , y , null);
+        System.out.println(x + " " + y);
 
     }
 
@@ -64,20 +94,10 @@ public class NewMS extends JFrame {
         for (Box box : Box.values())
             imagesArray[i++] = getImage(box.name().toLowerCase());
 
-//        boxNumbers[0] = getImage("NoBomb".toLowerCase());
-//        boxNumbers[1] = getImage("Num1".toLowerCase());
-//        boxNumbers[2] = getImage("Num2".toLowerCase());
-//        boxNumbers[3] = getImage("Num3".toLowerCase());
-//        boxNumbers[4] = getImage("Num4".toLowerCase());
-//        boxNumbers[5] = getImage("Num5".toLowerCase());
-//        boxNumbers[6] = getImage("Num6".toLowerCase());
-//        boxNumbers[7] = getImage("Num7".toLowerCase());
-//        boxNumbers[8] = getImage("Num8".toLowerCase());
-
     }
 
-    private Image getImage(String name) {
+    private ImageIcon getImage(String name) {
         ImageIcon icon = new ImageIcon("pictures/" + name + ".png");
-        return icon.getImage();
+        return icon;
     }
 }
