@@ -10,11 +10,13 @@ import java.util.Random;
 
 public class NewMS extends JFrame {
 
-    private static final int COLS = 9, ROWS = 9, IMAGE_SIZE = 80;
+    private static final int COLS = 20, ROWS = 20, IMAGE_SIZE = 80;
     private GridLayout grid = new GridLayout(COLS, ROWS);
     private static ImageIcon[] imagesArray = new ImageIcon[16];
     private int roundX = 0, roundY = 0;
     private static JPanel panel = new JPanel();
+    private static ActionListener act;
+    private static JButton[][] buttons = new JButton[COLS][ROWS];
 
     public static void main(String[] args) {
         new NewMS();
@@ -62,19 +64,15 @@ public class NewMS extends JFrame {
 //            }
 //        };
 
-        JButton[][] buttons = new JButton[COLS][ROWS];
+
 
         for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
                         buttons[i][j] = new JButton();
+                        buttons[i][j].setSize(30, 30);
                         buttons[i][j].setMargin(new Insets(0,0,0,0));
                         buttons[i][j].setIcon(imagesArray[7]);
-                        buttons[i][j].addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
 
-                            }
-                        });
                         panel.add(buttons[i][j]);
                     }
                 }
@@ -84,8 +82,10 @@ public class NewMS extends JFrame {
 
     private void painter(int x, int y) {
 
-        panel.getGraphics().drawImage(imagesArray[8].getImage(), x , y , null);
-        System.out.println(x + " " + y);
+        buttons[x][y].setIcon(imagesArray[5]);
+        repaint();
+//        panel.getGraphics().drawImage(imagesArray[8].getImage(), x , y , null);
+//        System.out.println(x + " " + y);
 
     }
 
