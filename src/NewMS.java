@@ -11,12 +11,13 @@ import java.util.Random;
 public class NewMS extends JFrame {
 
     private static final int COLS = 9, ROWS = 9, IMAGE_SIZE = 60;
-    private GridLayout grid = new GridLayout(COLS, ROWS);
+//    private GridLayout grid = new GridLayout(COLS, ROWS);
     private static Image[] imagesArray = new Image[16];
     private int roundX = 0, roundY = 0;
     private static JPanel panel;
-    private static ActionListener act;
-    private static JButton[][] buttons = new JButton[COLS][ROWS];
+    private static int[][] field = new int[COLS][ROWS];
+//    private static ActionListener act;
+//    private static JButton[][] buttons = new JButton[COLS][ROWS];
 
     public static void main(String[] args) {
         new NewMS();
@@ -33,15 +34,16 @@ public class NewMS extends JFrame {
 //        setResizable(false);
 //        pack();
         setLocationRelativeTo(null);
+        field[0][0] = 3;
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e != null) {
-                    roundX = e.getX() % IMAGE_SIZE;
-                    roundY = e.getY() % IMAGE_SIZE;
+                    roundX = e.getX() / IMAGE_SIZE;
+                    roundY = e.getY() / IMAGE_SIZE;
                     System.out.println(e.getX() + " " + e.getY());
-                    painter(e.getX() - roundX, e.getY() - roundY);
+                    painter(e.getX(), e.getY());
                 }
             }
         });
@@ -83,7 +85,7 @@ public class NewMS extends JFrame {
 
 //        buttons[x][y].setIcon(imagesArray[5]);
 //        repaint();
-        panel.getGraphics().drawImage(imagesArray[8], x , y , null);
+        panel.getGraphics().drawImage(imagesArray[field[roundX][roundY]], x , y , null);
         System.out.println(x + " " + y);
 
     }
