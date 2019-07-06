@@ -8,14 +8,12 @@ import sweeper.Box;
 
 public class Main extends JFrame {
 
-    private final int COLS = 9;
-    private final int ROWS = 9;
-    private final int IMAGE_SIZE = 60;
+    private static final int COLS = 9, ROWS = 9, IMAGE_SIZE = 60;
+    private static Image[] imagesArray = new Image[16];
     private static JPanel panel;
-    private Image[] boxNumbers = new Image[9];
-    private static Random rand = new Random(1890);
     private int[][] field = new int[COLS][ROWS];
-    private static int mI = 0, mJ = 0;
+    private int roundX = 0, roundY = 0;
+
 
     public static void main(String[] args) {
         new Main();
@@ -23,98 +21,149 @@ public class Main extends JFrame {
 
     private Main() {
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                field[i][j] = 1;
-            }
-        }
-
+        fieldInitiation();
         setImages();
+        System.out.println();
         initPanel();
-        initFrame();
-        addMouseListener(new MouseAdapter() {
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mine Sweeper");
+        getContentPane().add(panel);
+        setResizable(false);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        getContentPane().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                    mI = e.getX() / IMAGE_SIZE ;//% COLS
-                    mJ = e.getY() / IMAGE_SIZE; //% ROWS
-                    System.out.println(e.getX() + " " + e.getY());
-                    System.out.println(mI + " " + mJ);
-                    repaint();
+                if (e != null) {
+                    int button = e.getButton();
+                    roundX = e.getX() % IMAGE_SIZE;
+                    roundY = e.getY() % IMAGE_SIZE;
+                    if (button == 3) {
+                        painter(e.getX() - roundX, e.getY() - roundY, button);
+                    } else if (e.getButton() == 1) {
+                        painter(e.getX() - roundX, e.getY() - roundY, button);
+                    }
+                }
             }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                if (e != null) {
+                    int button = e.getButton();
+                    roundX = e.getX() % IMAGE_SIZE;
+                    roundY = e.getY() % IMAGE_SIZE;
+                    if (button == 3) {
+                        painter(e.getX() - roundX, e.getY() - roundY, button);
+                    } else if (e.getButton() == 1) {
+                        painter(e.getX() - roundX, e.getY() - roundY, button);
+                    }
+                }
+            }
+
         });
     }
 
     private void fieldInitiation() {
-        int value;
-        Random rand = new Random();
+
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                value = rand.nextInt(5);
-                field[i][j] = value;
-                while (value != 0) {
+                field[i][j] = 0;
+            }
+        }
 
+        int value, quantity;
+        Random rand = new Random();
+        for (int i = 1; i < 8; i++) {
+            for (int j = 1; j < 8; j++) {
+                field[i][j] = rand.nextInt(7);
+                quantity = field[i][j];
+                while (quantity != 0) {
+                    value = rand.nextInt(8);
+                    switch (value) {
+                        case 0: if (field[i-1][j-1] == 0) {
+                            field[i-1][j-1] = 13;
+                        }
+                        case 1: if (field[i-1][j-1] == 0) {
+                            field[i-1][j] = 13;
+                        }
+                        case 2: if (field[i-1][j-1] == 0) {
+                            field[i-1][j+1] = 13;
+                        }
+                        case 3: if (field[i-1][j-1] == 0) {
+                            field[i][j-1] = 13;
+                        }
+                        case 4: if (field[i-1][j-1] == 0) {
+                            field[i][j+1] = 13;
+                        }
+                        case 5: if (field[i-1][j-1] == 0) {
+                            field[i+1][j-1] = 13;
+                        }
+                        case 6: if (field[i-1][j-1] == 0) {
+                            field[i+1][j] = 13;
+                        }
+                        case 7: if (field[i-1][j-1] == 0) {
+                            field[i+1][j+1] = 13;
+                        }
+                    }
+                    quantity--;
                 }
-
             }
         }
     }
 
     private void initPanel() {
-        panel = new JPanel(){
+
+        panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
-//                if (mI == 0 && mJ == 0) {
-//                    for (int i = 0; i < 9; i++) {
-//                        for (int j = 0; j < 9; j++) {
-//                            g.drawImage(boxNumbers[0],mI * IMAGE_SIZE, mJ * IMAGE_SIZE, this);
-//                        }
-//                    }
-//                }
+                for (int i = 0; i < ROWS; i++) {
+                    for (int j = 0; j < COLS; j++) {
+                        g.drawImage(imagesArray[9], i * IMAGE_SIZE, j * IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+                        Graphics2D gr = (Graphics2D) g;
+                        gr.setBackground(Color.WHITE);
+                        gr.setStroke(new BasicStroke(2));
+                        gr.drawLine(i, j * IMAGE_SIZE, (i+1) * IMAGE_SIZE, j * IMAGE_SIZE);
+                        gr.drawLine(j * IMAGE_SIZE, i, j * IMAGE_SIZE, ROWS * IMAGE_SIZE);
 
-                if (field[mI][mJ] == 1) {
-                    g.drawImage( boxNumbers[1],mI * IMAGE_SIZE, mJ * IMAGE_SIZE, null);
+                    }
                 }
 
-
-//                for (Box box : Box.values())
-//                g.drawImage((Image) box.image,box.ordinal() * IMAGE_SIZE, 0, this);
-
-
-
-
-//                g.drawImage(getImage("Num1"), IMAGE_SIZE, IMAGE_SIZE, this);
-//                g.drawImage(getImage("Num1"), 0, IMAGE_SIZE, this);
             }
         };
         panel.setPreferredSize(new Dimension(COLS * IMAGE_SIZE, ROWS * IMAGE_SIZE));
-        add(panel);
     }
 
-    private void initFrame() {
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Mine Sweeper");
-        setVisible(true);
-        setResizable(false);
-        pack();
-        setLocationRelativeTo(null);
+    private void painter(int x, int y, int button) {
+        if (button == 1) {
+            panel.getGraphics().drawImage(imagesArray[field[x / IMAGE_SIZE][y / IMAGE_SIZE]], x, y,IMAGE_SIZE, IMAGE_SIZE, this);
+        } else if (button == 3) {
+            panel.getGraphics().drawImage(imagesArray[11], x, y,IMAGE_SIZE, IMAGE_SIZE, this);
+        }
+
     }
 
     private void setImages() {
-        for (Box box : Box.values())
-            box.image = getImage(box.name().toLowerCase());
 
-            boxNumbers[0] = getImage("NoBomb".toLowerCase());
-            boxNumbers[1] = getImage("Num1".toLowerCase());
-            boxNumbers[2] = getImage("Num2".toLowerCase());
-            boxNumbers[3] = getImage("Num3".toLowerCase());
-            boxNumbers[4] = getImage("Num4".toLowerCase());
-            boxNumbers[5] = getImage("Num5".toLowerCase());
-            boxNumbers[6] = getImage("Num6".toLowerCase());
-            boxNumbers[7] = getImage("Num7".toLowerCase());
-            boxNumbers[8] = getImage("Num8".toLowerCase());
+        imagesArray[0] = getImage("Zero".toLowerCase());
+        imagesArray[1] = getImage("Num1".toLowerCase());
+        imagesArray[2] = getImage("Num2".toLowerCase());
+        imagesArray[3] = getImage("Num3".toLowerCase());
+        imagesArray[4] = getImage("Num4".toLowerCase());
+        imagesArray[5] = getImage("Num5".toLowerCase());
+        imagesArray[6] = getImage("Num6".toLowerCase());
+        imagesArray[7] = getImage("Num7".toLowerCase());
+        imagesArray[8] = getImage("Num8".toLowerCase());
+        imagesArray[9] = getImage("Closed".toLowerCase());
+        imagesArray[10] = getImage("Opened".toLowerCase());
+        imagesArray[11] = getImage("Flagged".toLowerCase());
+        imagesArray[12] = getImage("BombBang".toLowerCase());
+        imagesArray[13] = getImage("Bomb".toLowerCase());
+        imagesArray[14] = getImage("icon".toLowerCase());
 
     }
 
