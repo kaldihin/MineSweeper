@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-import sweeper.Box;
 
 public class Main extends JFrame {
 
@@ -12,7 +11,7 @@ public class Main extends JFrame {
     private static Image[] imagesArray = new Image[16];
     private static JPanel panel;
     private int[][] field = new int[COLS][ROWS];
-    private int roundX = 0, roundY = 0;
+    private int roundX = 0, roundY = 0, bombsCount = 0;
 
 
     public static void main(String[] args) {
@@ -112,6 +111,14 @@ public class Main extends JFrame {
                 }
             }
         }
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (field[i][j] == 13)
+                    bombsCount++;
+            }
+        }
+
     }
 
     private void initPanel() {
@@ -140,11 +147,35 @@ public class Main extends JFrame {
 
     private void painter(int x, int y, int button) {
         if (button == 1) {
+            if (field[x / IMAGE_SIZE][y / IMAGE_SIZE] == 13) {
+                bombsPainter();
+            }
             panel.getGraphics().drawImage(imagesArray[field[x / IMAGE_SIZE][y / IMAGE_SIZE]], x, y,IMAGE_SIZE, IMAGE_SIZE, this);
         } else if (button == 3) {
             panel.getGraphics().drawImage(imagesArray[11], x, y,IMAGE_SIZE, IMAGE_SIZE, this);
+            bombsCount--;
+            if (bombsCount == 0) {
+                int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
+                if (resultButton == JOptionPane.YES_OPTION) {
+                    new Main();
+                } else System.exit(0);
+            }
         }
 
+    }
+
+    private void bombsPainter() {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                    //panel.getGraphics().drawImage(imagesArray[13], i*IMAGE_SIZE, j*IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+                    panel.getGraphics().drawImage(imagesArray[field[i][j]], i*IMAGE_SIZE, j*IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+            }
+        }
+        int buttonResult = JOptionPane.showConfirmDialog(this, "Do You want to start a new game?", "Continue the game",
+                JOptionPane.YES_NO_OPTION);
+        if (buttonResult == JOptionPane.NO_OPTION)
+            System.exit(0);
+        else new Main();
     }
 
     private void setImages() {

@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a1cc6c57-1538-44df-98d6-0ea643e4e73f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/NewMS$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/NewMS$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/NewMS.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pictures/Flaged.png" beforeDir="false" afterPath="$PROJECT_DIR$/pictures/Flagged.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NewMS.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,14 +20,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-533">
-              <caret line="82" column="39" lean-forward="true" selection-start-line="82" selection-start-column="39" selection-end-line="82" selection-end-column="39" />
+            <state relative-caret-position="-1080">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#483#484#0" expanded="true" />
                 <element signature="e#509#510#0" expanded="true" />
-                <element signature="e#3338#3754#0" expanded="true" />
-                <element signature="e#3753#3754#0" expanded="true" />
+                <element signature="e#4067#4836#0" expanded="true" />
+                <element signature="e#4835#4836#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,6 +97,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,7 +126,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -199,7 +191,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49819493" visible="true" weight="0.11353944" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49819493" visible="true" weight="0.116204694" />
       <window_info id="Structure" order="1" sideWeight="0.50180507" side_tool="true" weight="0.10021322" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -290,20 +282,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NewMS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NewMS.java" />
     <entry file="jrt://C:/Program Files/Java/jdk-11.0.2!/java.desktop/java/awt/Graphics.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1730">
           <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1080">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+            <element signature="e#4067#4836#0" expanded="true" />
+            <element signature="e#4835#4836#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -313,31 +310,17 @@
     <entry file="file://$PROJECT_DIR$/pictures/Bomb.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pictures/Num8.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pictures/NoBomb.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pictures/Zero.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pictures/Opened.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-533">
-          <caret line="82" column="39" lean-forward="true" selection-start-line="82" selection-start-column="39" selection-end-line="82" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#509#510#0" expanded="true" />
-            <element signature="e#3338#3754#0" expanded="true" />
-            <element signature="e#3753#3754#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/pictures/Num8.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pictures/NoBomb.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
