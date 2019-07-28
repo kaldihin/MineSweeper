@@ -4,25 +4,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
+class Main extends JFrame {
 
-public class Main extends JFrame {
-
-    private static final int COLS = 9, ROWS = 9, IMAGE_SIZE = 60;
+    private static final int COLS = 18, ROWS = 18, IMAGE_SIZE = 30;
     private static Image[] imagesArray = new Image[16];
     private static JPanel panel;
     private int[][] field = new int[COLS][ROWS];
     private int roundX = 0, roundY = 0, bombsCount = 0;
+    private static boolean initiator = false;
 
+    public Main() {
 
-    public static void main(String[] args) {
-        new Main();
+        setImages();
+        startGame();
+
     }
 
-    private Main() {
-
-        fieldInitiation();
-        setImages();
-        System.out.println();
+    private void startGame() {
         initPanel();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mine Sweeper");
@@ -42,6 +40,10 @@ public class Main extends JFrame {
                     if (button == 3) {
                         painter(e.getX() - roundX, e.getY() - roundY, button);
                     } else if (e.getButton() == 1) {
+                        if (!initiator) {
+                            fieldInitiation(e.getX()/IMAGE_SIZE, e.getY()/IMAGE_SIZE);
+                            initiator = true;
+                        }
                         painter(e.getX() - roundX, e.getY() - roundY, button);
                     }
                 }
@@ -65,19 +67,30 @@ public class Main extends JFrame {
         });
     }
 
-    private void fieldInitiation() {
+    private void fieldInitiation(int firstX, int firstY) {
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+
+
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
                 field[i][j] = 0;
             }
         }
 
-        int value, quantity;
+        int value1, value2, quantity = 25;
         Random rand = new Random();
-        for (int i = 1; i < 8; i++) {
-            for (int j = 1; j < 8; j++) {
-                field[i][j] = rand.nextInt(7);
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if (i != firstX && j != firstY)
+                    while (quantity != 0) {
+                        value1 = rand.nextInt(COLS);
+                        value2 = rand.nextInt(COLS);
+                        if (field[value1][value2] == 0 && value1 != firstX && value2 != firstY) {
+                            field[value1][value2] = 13;
+                            quantity--;
+                        }
+                    }
+
                 quantity = field[i][j];
                 while (quantity != 0) {
                     value = rand.nextInt(8);
@@ -112,8 +125,8 @@ public class Main extends JFrame {
             }
         }
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
                 if (field[i][j] == 13)
                     bombsCount++;
             }
@@ -175,7 +188,7 @@ public class Main extends JFrame {
                 JOptionPane.YES_NO_OPTION);
         if (buttonResult == JOptionPane.NO_OPTION)
             System.exit(0);
-        else new Main();
+        else startGame();
     }
 
     private void setImages() {
