@@ -41,7 +41,7 @@ class Main extends JFrame {
                         painter(e.getX() - roundX, e.getY() - roundY, button);
                     } else if (e.getButton() == 1) {
                         if (!initiator) {
-                            fieldInitiation(e.getX()/IMAGE_SIZE, e.getY()/IMAGE_SIZE);
+                            fieldInitiation(e.getX() / IMAGE_SIZE, e.getY() / IMAGE_SIZE);
                             initiator = true;
                         }
                         painter(e.getX() - roundX, e.getY() - roundY, button);
@@ -69,7 +69,11 @@ class Main extends JFrame {
 
     private void fieldInitiation(int firstX, int firstY) {
 
-
+        /*
+         *
+         *   Making the field empty
+         *
+         * */
 
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
@@ -77,8 +81,14 @@ class Main extends JFrame {
             }
         }
 
-        int value1, value2, quantity = 25;
+        int value1, value2, quantity = 25, cellBombs = 0;
         Random rand = new Random();
+
+        /*
+         *
+         *   Random putting bombs in the field
+         *
+         * */
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 if (i != firstX && j != firstY)
@@ -90,49 +100,216 @@ class Main extends JFrame {
                             quantity--;
                         }
                     }
-
-                quantity = field[i][j];
-                while (quantity != 0) {
-                    value = rand.nextInt(8);
-                    switch (value) {
-                        case 0: if (field[i-1][j-1] == 0) {
-                            field[i-1][j-1] = 13;
-                        }
-                        case 1: if (field[i-1][j-1] == 0) {
-                            field[i-1][j] = 13;
-                        }
-                        case 2: if (field[i-1][j-1] == 0) {
-                            field[i-1][j+1] = 13;
-                        }
-                        case 3: if (field[i-1][j-1] == 0) {
-                            field[i][j-1] = 13;
-                        }
-                        case 4: if (field[i-1][j-1] == 0) {
-                            field[i][j+1] = 13;
-                        }
-                        case 5: if (field[i-1][j-1] == 0) {
-                            field[i+1][j-1] = 13;
-                        }
-                        case 6: if (field[i-1][j-1] == 0) {
-                            field[i+1][j] = 13;
-                        }
-                        case 7: if (field[i-1][j-1] == 0) {
-                            field[i+1][j+1] = 13;
-                        }
-                    }
-                    quantity--;
-                }
             }
         }
+
+        /*
+         *
+         *   Putting numbers between the bombs
+         *
+         * */
+
+        boolean left = false, right = false, up = false, down = false;
 
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                if (field[i][j] == 13)
-                    bombsCount++;
+
+                if (j == 0)
+                    left = true;
+                if (i == ROWS - 1)
+                    down = true;
+                if (i == 0)
+                    up = true;
+                if (j == COLS - 1)
+                    right = true;
+
+                if (left && up) {
+                    if (field[i][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (right && up) {
+                    if (field[i][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (right && down) {
+                    if (field[i][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (left && down) {
+                    if (field[i][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (left) {
+                    if (field[i - 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (down) {
+                    if (field[i][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (right) {
+                    if (field[i + 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                else if (up) {
+                    if (field[i + 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i][j - 1] == 13) {            /////////////////
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i - 1][j] == 13) {
+                        cellBombs++;
+                    }
+
+                    field[i][j] = cellBombs;
+                }
+
+                if (field[i - 1][j - 1] == 13) {
+                    cellBombs++;
+                }
+                if (field[i - 1][j] == 13) {
+                    cellBombs++;
+                }
+                if (field[i - 1][j + 1] == 13) {
+                    cellBombs++;
+                }
+                if (field[i][j - 1] == 13) {
+                    cellBombs++;
+                }
+                if (field[i][j] == 13) {
+                    cellBombs++;
+                }
+                if (field[i][j + 1] == 13) {
+                    cellBombs++;
+                }
+                if (field[i + 1][j - 1] == 13) {
+                    cellBombs++;
+                }
+                if (field[i + 1][j] == 13) {
+                    cellBombs++;
+                }
+                if (field[i + 1][j + 1] == 13) {
+                    cellBombs++;
+                }
+
+
+
+
+
+
+
+
+                left = false;
+                right = false;
+                up = false;
+                down = false;
+                cellBombs = 0;
             }
         }
-
     }
+
+//        for (int i = 0; i < ROWS; i++) {
+//            for (int j = 0; j < COLS; j++) {
+//                if (field[i][j] == 13)
+//                    bombsCount++;
+//            }
+//        }
+
 
     private void initPanel() {
 
@@ -147,7 +324,7 @@ class Main extends JFrame {
                         Graphics2D gr = (Graphics2D) g;
                         gr.setBackground(Color.WHITE);
                         gr.setStroke(new BasicStroke(2));
-                        gr.drawLine(i, j * IMAGE_SIZE, (i+1) * IMAGE_SIZE, j * IMAGE_SIZE);
+                        gr.drawLine(i, j * IMAGE_SIZE, (i + 1) * IMAGE_SIZE, j * IMAGE_SIZE);
                         gr.drawLine(j * IMAGE_SIZE, i, j * IMAGE_SIZE, ROWS * IMAGE_SIZE);
 
                     }
@@ -163,9 +340,9 @@ class Main extends JFrame {
             if (field[x / IMAGE_SIZE][y / IMAGE_SIZE] == 13) {
                 bombsPainter();
             }
-            panel.getGraphics().drawImage(imagesArray[field[x / IMAGE_SIZE][y / IMAGE_SIZE]], x, y,IMAGE_SIZE, IMAGE_SIZE, this);
+            panel.getGraphics().drawImage(imagesArray[field[x / IMAGE_SIZE][y / IMAGE_SIZE]], x, y, IMAGE_SIZE, IMAGE_SIZE, this);
         } else if (button == 3) {
-            panel.getGraphics().drawImage(imagesArray[11], x, y,IMAGE_SIZE, IMAGE_SIZE, this);
+            panel.getGraphics().drawImage(imagesArray[11], x, y, IMAGE_SIZE, IMAGE_SIZE, this);
             bombsCount--;
             if (bombsCount == 0) {
                 int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
@@ -180,8 +357,8 @@ class Main extends JFrame {
     private void bombsPainter() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                    //panel.getGraphics().drawImage(imagesArray[13], i*IMAGE_SIZE, j*IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
-                    panel.getGraphics().drawImage(imagesArray[field[i][j]], i*IMAGE_SIZE, j*IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+                //panel.getGraphics().drawImage(imagesArray[13], i*IMAGE_SIZE, j*IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+                panel.getGraphics().drawImage(imagesArray[field[i][j]], i * IMAGE_SIZE, j * IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
             }
         }
         int buttonResult = JOptionPane.showConfirmDialog(this, "Do You want to start a new game?", "Continue the game",
