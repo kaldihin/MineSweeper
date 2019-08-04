@@ -7,16 +7,19 @@ import java.util.Random;
 class Main extends JFrame {
 
     private static final int COLS = 18, ROWS = 18, IMAGE_SIZE = 30;
+    private static int difficulty;
     private static Image[] imagesArray = new Image[16];
     private static JPanel panel;
     private int[][] field = new int[COLS][ROWS];
-    private int roundX = 0, roundY = 0, bombsCount = 0;
+    private int roundX = 0, roundY = 0, bombsCount;
     private static boolean initiator = false;
 
-    public Main() {
+    public Main(int diff) {
 
         setImages();
         startGame();
+        difficulty = diff;
+        bombsCount = difficulty * 20 * 2;
 
     }
 
@@ -42,6 +45,7 @@ class Main extends JFrame {
                     } else if (e.getButton() == 1) {
                         if (!initiator) {
                             fieldInitiation(e.getX() / IMAGE_SIZE, e.getY() / IMAGE_SIZE);
+                            drawEmptys();
                             initiator = true;
                         }
                         painter(e.getX() - roundX, e.getY() - roundY, button);
@@ -81,7 +85,7 @@ class Main extends JFrame {
             }
         }
 
-        int value1, value2, quantity = 25, cellBombs = 0;
+        int value1, value2, quantity = difficulty * 20, cellBombs = 0;
         Random rand = new Random();
 
         /*
@@ -134,6 +138,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -148,6 +153,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -162,6 +168,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -176,6 +183,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -196,6 +204,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -216,6 +225,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -236,6 +246,7 @@ class Main extends JFrame {
                         cellBombs++;
                     }
 
+                    if (field[i][j] == 0)
                     field[i][j] = cellBombs;
                 }
 
@@ -246,52 +257,51 @@ class Main extends JFrame {
                     if (field[i + 1][j - 1] == 13) {
                         cellBombs++;
                     }
-                    if (field[i][j - 1] == 13) {            /////////////////
+                    if (field[i][j - 1] == 13) {
                         cellBombs++;
                     }
+                    if (field[i][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+
+                    if (field[i][j] == 0)
+                    field[i][j] = cellBombs;
+                }
+
+                else {
+
                     if (field[i - 1][j - 1] == 13) {
                         cellBombs++;
                     }
                     if (field[i - 1][j] == 13) {
                         cellBombs++;
                     }
+                    if (field[i - 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i][j + 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j - 1] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j] == 13) {
+                        cellBombs++;
+                    }
+                    if (field[i + 1][j + 1] == 13) {
+                        cellBombs++;
+                    }
 
-                    field[i][j] = cellBombs;
-                }
+                    if (field[i][j] == 0)
+                        field[i][j] = cellBombs;
 
-                if (field[i - 1][j - 1] == 13) {
-                    cellBombs++;
                 }
-                if (field[i - 1][j] == 13) {
-                    cellBombs++;
-                }
-                if (field[i - 1][j + 1] == 13) {
-                    cellBombs++;
-                }
-                if (field[i][j - 1] == 13) {
-                    cellBombs++;
-                }
-                if (field[i][j] == 13) {
-                    cellBombs++;
-                }
-                if (field[i][j + 1] == 13) {
-                    cellBombs++;
-                }
-                if (field[i + 1][j - 1] == 13) {
-                    cellBombs++;
-                }
-                if (field[i + 1][j] == 13) {
-                    cellBombs++;
-                }
-                if (field[i + 1][j + 1] == 13) {
-                    cellBombs++;
-                }
-
-
-
-
-
-
 
 
                 left = false;
@@ -302,13 +312,6 @@ class Main extends JFrame {
             }
         }
     }
-
-//        for (int i = 0; i < ROWS; i++) {
-//            for (int j = 0; j < COLS; j++) {
-//                if (field[i][j] == 13)
-//                    bombsCount++;
-//            }
-//        }
 
 
     private void initPanel() {
@@ -343,15 +346,29 @@ class Main extends JFrame {
             panel.getGraphics().drawImage(imagesArray[field[x / IMAGE_SIZE][y / IMAGE_SIZE]], x, y, IMAGE_SIZE, IMAGE_SIZE, this);
         } else if (button == 3) {
             panel.getGraphics().drawImage(imagesArray[11], x, y, IMAGE_SIZE, IMAGE_SIZE, this);
-            bombsCount--;
-            if (bombsCount == 0) {
+            --bombsCount;
+            System.out.println(bombsCount);
+            if (bombsCount == 40) {
                 int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
                 if (resultButton == JOptionPane.YES_OPTION) {
-                    new Main();
+                    new Main(1);
                 } else System.exit(0);
             }
         }
 
+    }
+
+    private void drawEmptys() {
+        Random rand = new Random(23);
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if ( rand.nextInt(ROWS) > 10 && field[i][j] != 13) {
+                    panel.getGraphics().drawImage(imagesArray[field[i][j]], i * IMAGE_SIZE, j * IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+                }
+                if (field[i][j] == 0)
+                panel.getGraphics().drawImage(imagesArray[field[i][j]], i * IMAGE_SIZE, j * IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE, this);
+            }
+        }
     }
 
     private void bombsPainter() {
