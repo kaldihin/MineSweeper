@@ -1,18 +1,31 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-class Main extends JFrame {
+public class Main extends JFrame {
 
     private static final int COLS = 18, ROWS = 18, IMAGE_SIZE = 30;
-    private static int difficulty;
+    private static int difficulty = 0;
     private static Image[] imagesArray = new Image[16];
     private static JPanel panel;
     private int[][] field = new int[COLS][ROWS];
     private int roundX = 0, roundY = 0, bombsCount;
-    private static boolean initiator = false;
+    private static boolean initiator = false, initi = false;
+    private static Main game;
+
+    public static void main(String[] args) {
+
+        if (!initiator && !initi) {
+            chooseDifficult();
+            game = new Main(difficulty);
+            initi = true;
+        }
+
+    }
 
     public Main(int diff) {
 
@@ -20,6 +33,47 @@ class Main extends JFrame {
         startGame();
         difficulty = diff;
         bombsCount = difficulty * 20 * 2;
+
+    }
+
+    private static void chooseDifficult() {
+        JFrame chooser;
+        JRadioButton easy = new JRadioButton("easy");
+        JRadioButton middle = new JRadioButton("middle");
+        JRadioButton difficult = new JRadioButton("difficult");
+
+        easy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                difficulty = 1;
+            }
+        });
+        middle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                difficulty = 2;
+            }
+        });
+        difficult.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                difficulty = 3;
+            }
+        });
+
+        chooser = new JFrame("Choose difficulty level");
+        chooser.setSize(200, 100);
+        chooser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        chooser.setLayout(new BoxLayout(chooser.getContentPane(), BoxLayout.X_AXIS));
+        chooser.add(easy);
+        chooser.add(middle);
+        chooser.add(difficult);
+        chooser.setLocationRelativeTo(null);
+
+        chooser.setVisible(true);
+
+        if (difficulty != 0)
+            chooser.setVisible(false);
 
     }
 
@@ -351,7 +405,8 @@ class Main extends JFrame {
             if (bombsCount == 40) {
                 int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
                 if (resultButton == JOptionPane.YES_OPTION) {
-                    new Main(1);
+                    initi = true;
+                    difficulty = 0;
                 } else System.exit(0);
             }
         }
@@ -382,7 +437,11 @@ class Main extends JFrame {
                 JOptionPane.YES_NO_OPTION);
         if (buttonResult == JOptionPane.NO_OPTION)
             System.exit(0);
-        else startGame();
+        else {
+            initi = true;
+            difficulty = 0;
+            redraw();
+        }
     }
 
     private void setImages() {
@@ -403,6 +462,10 @@ class Main extends JFrame {
         imagesArray[13] = getImage("Bomb".toLowerCase());
         imagesArray[14] = getImage("icon".toLowerCase());
 
+    }
+
+    private void redraw() {
+        setVisible(false);
     }
 
     private Image getImage(String name) {
