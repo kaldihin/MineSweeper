@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
-public class Main extends JFrame {
+class Main extends JFrame {
 
     private static final int COLS = 18, ROWS = 18, IMAGE_SIZE = 30;
     private static int difficulty = 0;
@@ -14,66 +14,17 @@ public class Main extends JFrame {
     private static JPanel panel;
     private int[][] field = new int[COLS][ROWS];
     private int roundX = 0, roundY = 0, bombsCount;
-    private static boolean initiator = false, initi = false;
-    private static Main game;
+    private static boolean initiator = false;
 
-    public static void main(String[] args) {
-
-        if (!initiator && !initi) {
-            chooseDifficult();
-            game = new Main(difficulty);
-            initi = true;
-        }
-
-    }
+    public static boolean running = false;
 
     public Main(int diff) {
 
+        running = true;
         setImages();
         startGame();
         difficulty = diff;
         bombsCount = difficulty * 20 * 2;
-
-    }
-
-    private static void chooseDifficult() {
-        JFrame chooser;
-        JRadioButton easy = new JRadioButton("easy");
-        JRadioButton middle = new JRadioButton("middle");
-        JRadioButton difficult = new JRadioButton("difficult");
-
-        easy.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                difficulty = 1;
-            }
-        });
-        middle.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                difficulty = 2;
-            }
-        });
-        difficult.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                difficulty = 3;
-            }
-        });
-
-        chooser = new JFrame("Choose difficulty level");
-        chooser.setSize(200, 100);
-        chooser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        chooser.setLayout(new BoxLayout(chooser.getContentPane(), BoxLayout.X_AXIS));
-        chooser.add(easy);
-        chooser.add(middle);
-        chooser.add(difficult);
-        chooser.setLocationRelativeTo(null);
-
-        chooser.setVisible(true);
-
-        if (difficulty != 0)
-            chooser.setVisible(false);
 
     }
 
@@ -405,8 +356,8 @@ public class Main extends JFrame {
             if (bombsCount == 40) {
                 int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
                 if (resultButton == JOptionPane.YES_OPTION) {
-                    initi = true;
-                    difficulty = 0;
+                    running = false;
+                    setVisible(false);
                 } else System.exit(0);
             }
         }
@@ -438,9 +389,8 @@ public class Main extends JFrame {
         if (buttonResult == JOptionPane.NO_OPTION)
             System.exit(0);
         else {
-            initi = true;
-            difficulty = 0;
-            redraw();
+            running = false;
+            setVisible(false);
         }
     }
 
