@@ -4,10 +4,10 @@ public class Starter {
 
         DifficultChooser difficultChooser = new DifficultChooser();
         difficultChooser.act();
-        Main mn;
+        Main mn = new Main(difficultChooser.getDifficulty());
 
         while (true) {
-            if (!Main.running) {
+            if (!mn.isRunning()) {
                 difficultChooser.act();
                 mn = new Main(difficultChooser.getDifficulty());
             }

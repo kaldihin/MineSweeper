@@ -16,9 +16,9 @@ class Main extends JFrame {
     private int roundX = 0, roundY = 0, bombsCount;
     private static boolean initiator = false;
 
-    public static boolean running = false;
+    private boolean running = false;
 
-    public Main(int diff) {
+    Main(int diff) {
 
         running = true;
         setImages();
@@ -26,6 +26,10 @@ class Main extends JFrame {
         difficulty = diff;
         bombsCount = difficulty * 20 * 2;
 
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 
     private void startGame() {
