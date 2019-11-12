@@ -1,17 +1,28 @@
 public class Starter {
 
+    public static boolean running = false;
+
     public static void main(String[] args) {
 
         DifficultChooser difficultChooser = new DifficultChooser();
         difficultChooser.act();
-        Main mn = new Main(difficultChooser.getDifficulty());
-
-        while (true) {
-            if (!mn.isRunning()) {
-                difficultChooser.act();
-                mn = new Main(difficultChooser.getDifficulty());
-            }
+        if (DifficultChooser.choosed) {
+            new Main(3);
         }
+
+        new Main(2);
+
+
+
+//            if (DifficultChooser.choosed) {
+//                running = true;
+//                mn = new Main(difficultChooser.getDifficulty());
+//            }
+//            else {
+//                mn.dispose();
+//                difficultChooser.act();
+//            }
+
     }
 
 }

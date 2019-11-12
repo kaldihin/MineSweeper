@@ -16,20 +16,15 @@ class Main extends JFrame {
     private int roundX = 0, roundY = 0, bombsCount;
     private static boolean initiator = false;
 
-    private boolean running = false;
+
 
     Main(int diff) {
 
-        running = true;
         setImages();
         startGame();
         difficulty = diff;
         bombsCount = difficulty * 20 * 2;
 
-    }
-
-    public boolean isRunning() {
-        return running;
     }
 
     private void startGame() {
@@ -360,8 +355,9 @@ class Main extends JFrame {
             if (bombsCount == 40) {
                 int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
                 if (resultButton == JOptionPane.YES_OPTION) {
-                    running = false;
+
                     setVisible(false);
+                    DifficultChooser.choosed = false;
                 } else System.exit(0);
             }
         }
@@ -393,8 +389,8 @@ class Main extends JFrame {
         if (buttonResult == JOptionPane.NO_OPTION)
             System.exit(0);
         else {
-            running = false;
             setVisible(false);
+            DifficultChooser.choosed = false;
         }
     }
 

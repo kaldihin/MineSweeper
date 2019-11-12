@@ -4,11 +4,12 @@ import java.awt.event.ActionListener;
 
 class DifficultChooser extends JFrame {
 
-    private int difficulty = 0;
-    private boolean choosed = false;
+    private static int difficulty = 0;
+    public static boolean choosed = false;
 
     public void act() {
 
+        choosed = false;
         setVisible(true);
 //
 //        while (true) {
@@ -28,24 +29,27 @@ class DifficultChooser extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 difficulty = 1;
-//                choosed = true;
+                choosed = true;
                 setVisible(false);
+                dispose();
             }
         });
         middle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 difficulty = 2;
-//                choosed = true;
+                choosed = true;
                 setVisible(false);
+                dispose();
             }
         });
         difficult.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 difficulty = 3;
-//                choosed = true;
+                choosed = true;
                 setVisible(false);
+                dispose();
             }
         });
 
