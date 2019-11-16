@@ -5,13 +5,15 @@ public class Starter {
     public static void main(String[] args) {
 
         DifficultChooser difficultChooser = new DifficultChooser();
-        difficultChooser.act();
-        if (DifficultChooser.choosed) {
-            new Main(3);
+
+        while (true) {
+            while (!DifficultChooser.choosed) {
+                difficultChooser.act();
+            }
+
+            new Main(difficultChooser.getDifficulty());
+
         }
-
-        new Main(2);
-
 
 
 //            if (DifficultChooser.choosed) {
