@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a1cc6c57-1538-44df-98d6-0ea643e4e73f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/META-INF/MineSweeper.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/META-INF/MineSweeper.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$5.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Starter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Starter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DifficultChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifficultChooser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Starter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Starter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

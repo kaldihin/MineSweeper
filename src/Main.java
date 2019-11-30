@@ -20,6 +20,7 @@ class Main extends JFrame {
 
     Main(int diff) {
 
+        Starter.running = true;
         setImages();
         startGame();
         difficulty = diff;
@@ -390,6 +391,7 @@ class Main extends JFrame {
             System.exit(0);
         else {
             setVisible(false);
+            Starter.running = false;
             DifficultChooser.choosed = false;
         }
     }

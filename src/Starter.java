@@ -11,6 +11,7 @@ public class Starter {
                 difficultChooser.act();
             }
 
+            if (!running)
             new Main(difficultChooser.getDifficulty());
 
         }

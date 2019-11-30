@@ -9,7 +9,6 @@ class DifficultChooser extends JFrame {
 
     public void act() {
 
-        choosed = false;
         setVisible(true);
 //
 //        while (true) {
@@ -31,7 +30,7 @@ class DifficultChooser extends JFrame {
                 difficulty = 1;
                 choosed = true;
                 setVisible(false);
-                dispose();
+//                dispose();
             }
         });
         middle.addActionListener(new ActionListener() {
@@ -40,7 +39,7 @@ class DifficultChooser extends JFrame {
                 difficulty = 2;
                 choosed = true;
                 setVisible(false);
-                dispose();
+//                dispose();
             }
         });
         difficult.addActionListener(new ActionListener() {
@@ -49,7 +48,7 @@ class DifficultChooser extends JFrame {
                 difficulty = 3;
                 choosed = true;
                 setVisible(false);
-                dispose();
+//                dispose();
             }
         });
 
