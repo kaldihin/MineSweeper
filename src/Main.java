@@ -398,21 +398,21 @@ class Main extends JFrame {
 
     private void setImages() {
 
-        imagesArray[0] = getImage("Zero".toLowerCase());
-        imagesArray[1] = getImage("Num1".toLowerCase());
-        imagesArray[2] = getImage("Num2".toLowerCase());
-        imagesArray[3] = getImage("Num3".toLowerCase());
-        imagesArray[4] = getImage("Num4".toLowerCase());
-        imagesArray[5] = getImage("Num5".toLowerCase());
-        imagesArray[6] = getImage("Num6".toLowerCase());
-        imagesArray[7] = getImage("Num7".toLowerCase());
-        imagesArray[8] = getImage("Num8".toLowerCase());
-        imagesArray[9] = getImage("Closed".toLowerCase());
-        imagesArray[10] = getImage("Opened".toLowerCase());
-        imagesArray[11] = getImage("Flagged".toLowerCase());
-        imagesArray[12] = getImage("BombBang".toLowerCase());
-        imagesArray[13] = getImage("Bomb".toLowerCase());
-        imagesArray[14] = getImage("icon".toLowerCase());
+        imagesArray[0] = getImage("Zero");
+        imagesArray[1] = getImage("Num1");
+        imagesArray[2] = getImage("Num2");
+        imagesArray[3] = getImage("Num3");
+        imagesArray[4] = getImage("Num4");
+        imagesArray[5] = getImage("Num5");
+        imagesArray[6] = getImage("Num6");
+        imagesArray[7] = getImage("Num7");
+        imagesArray[8] = getImage("Num8");
+        imagesArray[9] = getImage("Closed");
+        imagesArray[10] = getImage("Opened");
+        imagesArray[11] = getImage("Flagged");
+        imagesArray[12] = getImage("BombBang");
+        imagesArray[13] = getImage("Bomb");
+        imagesArray[14] = getImage("icon");
 
     }
 
