@@ -8,24 +8,41 @@ import java.util.Random;
 
 class Main extends JFrame {
 
+    private static boolean running = false;
     private static final int COLS = 18, ROWS = 18, IMAGE_SIZE = 30;
-    private static int difficulty = 0;
     private static Image[] imagesArray = new Image[16];
     private static JPanel panel;
     private int[][] field = new int[COLS][ROWS];
     private int roundX = 0, roundY = 0, bombsCount;
     private static boolean initiator = false;
+    private static boolean initiated = false;
 
 
+    Main() {
+        reInit();
+        DifficultChooser.init();
+        runner();
+    }
 
-    Main(int diff) {
+    public static void setRunning() {
+        running = true;
+    }
 
-        Starter.running = true;
+    public void runner() {
+        while (running) {
+            if (!initiated)
+            reInit();
+            if (DifficultChooser.isChosen())
+                repaint();
+
+        }
+    }
+
+    public void reInit() {
         setImages();
         startGame();
-        difficulty = diff;
-        bombsCount = difficulty * 20 * 2;
-
+        bombsCount = DifficultChooser.getDifficulty() * 20 * 2;
+        initiated = true;
     }
 
     private void startGame() {
@@ -90,7 +107,7 @@ class Main extends JFrame {
             }
         }
 
-        int value1, value2, quantity = difficulty * 20, cellBombs = 0;
+        int value1, value2, quantity = DifficultChooser.getDifficulty() * 20, cellBombs = 0;
         Random rand = new Random();
 
         /*
@@ -357,9 +374,13 @@ class Main extends JFrame {
                 int resultButton = JOptionPane.showConfirmDialog(this, "You won! Do You want to play again?", "Congratulations", JOptionPane.YES_NO_OPTION);
                 if (resultButton == JOptionPane.YES_OPTION) {
 
-                    setVisible(false);
-                    DifficultChooser.choosed = false;
-                } else System.exit(0);
+                    running = false;
+                    getContentPane().removeAll();
+                    repaint();
+                    initiated = false;
+                    DifficultChooser.setChosen(false);
+                }
+                else System.exit(0);
             }
         }
 
@@ -390,9 +411,13 @@ class Main extends JFrame {
         if (buttonResult == JOptionPane.NO_OPTION)
             System.exit(0);
         else {
-            setVisible(false);
-            Starter.running = false;
-            DifficultChooser.choosed = false;
+            running = false;
+            getContentPane().removeAll();
+            repaint();
+            initiated = false;
+
+            DifficultChooser.init();
+            DifficultChooser.setChosen(false);
         }
     }
 
@@ -414,10 +439,6 @@ class Main extends JFrame {
         imagesArray[13] = getImage("Bomb");
         imagesArray[14] = getImage("icon");
 
-    }
-
-    private void redraw() {
-        setVisible(false);
     }
 
     private Image getImage(String name) {

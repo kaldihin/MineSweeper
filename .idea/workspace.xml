@@ -2,13 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1cc6c57-1538-44df-98d6-0ea643e4e73f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DifficultChooserFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/DifficultChooser$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/DifficultChooser$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/DifficultChooser$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/DifficultChooser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/DifficultChooser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/META-INF/MineSweeper.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Starter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Starter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Starter$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Starter$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MineSweeper/Starter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MineSweeper/Starter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DifficultChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifficultChooser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Starter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Starter.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +49,13 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -47,18 +65,6 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.Starter">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -136,6 +142,28 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="778" y="401" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585542768870">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="778" y="401" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585542768869" />
+    <state width="1865" height="215" key="GridCell.Tab.0.bottom" timestamp="1590837098566">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="215" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590837098566" />
+    <state width="1865" height="215" key="GridCell.Tab.0.center" timestamp="1590837098566">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="215" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590837098566" />
+    <state width="1865" height="215" key="GridCell.Tab.0.left" timestamp="1590837098566">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="215" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590837098566" />
+    <state width="1865" height="215" key="GridCell.Tab.0.right" timestamp="1590837098566">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="215" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590837098566" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

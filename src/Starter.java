@@ -1,30 +1,28 @@
+import javax.swing.*;
+
 public class Starter {
 
     public static boolean running = false;
 
     public static void main(String[] args) {
 
-        DifficultChooser difficultChooser = new DifficultChooser();
+        SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new Main();
+                }
+            });
 
-        while (true) {
-            while (!DifficultChooser.choosed) {
-                difficultChooser.act();
-            }
-
-            if (!running)
-            new Main(difficultChooser.getDifficulty());
-
-        }
-
-
-//            if (DifficultChooser.choosed) {
-//                running = true;
-//                mn = new Main(difficultChooser.getDifficulty());
-//            }
-//            else {
-//                mn.dispose();
-//                difficultChooser.act();
-//            }
+//        if (!difficultChooser.isChosen()) {
+//            difficultChooser.init();
+//        } else {
+//            SwingUtilities.invokeLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    new Main(difficultChooser);
+//                }
+//            });
+//        }
 
     }
 
